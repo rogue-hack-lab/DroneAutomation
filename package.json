@@ -17,5 +17,8 @@
     "cylon-keyboard": "^0.17.0",
     "cylon-raspi": "^0.20.1",
     "pi-blaster.js": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
