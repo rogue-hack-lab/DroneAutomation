@@ -1,13 +1,14 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "impliedStrict": true,
+            "jsx": false
         },
         "sourceType": "module"
     },
@@ -18,6 +19,14 @@
         "no-unreachable": "warn",
         "no-unused-vars": "warn",
         "constructor-super": "warn",
-        "valid-typeof": "warn"
+        "valid-typeof": "warn",
+        "quotes": [ "warn", "single" ],
+        "no-multi-spaces": "warn",
+        "no-multiple-empty-lines": "warn",
+        "no-trailing-spaces": "warn",
+        "semi": ["warn","never"],
+        "no-extra-semi": "warn",
+        "new-cap": "warn",
+        "indent": [ "warn", "tab" ]
     }
 }
