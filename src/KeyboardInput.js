@@ -6,7 +6,7 @@ function Keyboard (name) {
 	'use strict'
 
 	/** 
-	 * whether or not activity is logged to the console 
+	* whether or not activity is logged to the console 
 	*/
 	let _echo = false
 
@@ -29,26 +29,6 @@ function Keyboard (name) {
 					console.log('halting keyboard')
 					Cylon.halt()
 					break
-				// case 'l':
-				// 	break
-				// case 'a':
-				// 	break
-				// case 'd':
-				// 	break
-				// case 's':
-				// 	break
-				// case 'w':
-				// 	break
-				// case 'up':
-				// 	break
-				// case 'down':
-				// 	break
-				// case 'left':
-				// 	break
-				// case 'right':
-				// 	break
-				// case '0':
-				// 	break
 				default:
 					console.log( key.name, 'pressed' )
 					break
@@ -56,18 +36,6 @@ function Keyboard (name) {
 			})
 			my.keyboard.on('keyup', (key) => {
 				switch(key.name){
-				// case 'a':
-				// 	break
-				// case 'd':
-				// 	break
-				// case 's':
-				// 	break
-				// case 'w':
-				// 	break
-				// case 'left':
-				// 	break
-				// case 'right':
-				// 	break
 				default:
 					console.log( key.name, 'released' )
 					break
