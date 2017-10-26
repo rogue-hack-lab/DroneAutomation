@@ -14,6 +14,7 @@ function Keyboard (name) {
 		name: name,
 
 		connections: {
+			loopback: { adaptor: 'loopback' },
 			keyboard: { adaptor: 'keyboard' }
 		},
 
@@ -24,9 +25,10 @@ function Keyboard (name) {
 		work: (my) => {
 			my.keyboard.on('keypress', (key) => {
 				switch(key.name){
-				// case 'escape':
-				// 	my.zeroSticks(my)
-				// 	break
+				case 'escape':
+					console.log('halting keyboard')
+					Cylon.halt()
+					break
 				// case 'l':
 				// 	break
 				// case 'a':
@@ -81,12 +83,15 @@ function Keyboard (name) {
 
 	})
 
-	Cylon.api('socketio',
-		{
-			host: '0.0.0.0',
-			port: '3300'
-		})
+	this.connect = (port) => {
+		(port) ? null : port = '3300'
+		Cylon.api('socketio',
+			{
+				host: '0.0.0.0',
+				port: port
+			})
+	}
 
-	Cylon.start()
+	this.start= () => {Cylon.start()}
 
 }

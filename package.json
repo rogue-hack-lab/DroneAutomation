@@ -4,7 +4,7 @@
   "description": "control a drone through web sockets",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "start": "node --no-deprecation ./index.js"
   },
   "author": "Rogue Hack Lab",
@@ -16,9 +16,14 @@
     "cylon-i2c": "^0.26.1",
     "cylon-keyboard": "^0.17.0",
     "cylon-raspi": "^0.20.1",
+    "jest": "^21.2.1",
     "pi-blaster.js": "^0.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogue-hack-lab/DroneAutomation"
   }
 }
