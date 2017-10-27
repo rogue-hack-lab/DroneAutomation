@@ -1,7 +1,8 @@
 'use strict'
-export default ((device) => {
-
-	const _piblaster = require('pi-blaster.js')
+const _piblaster = require('pi-blaster.js')
+module.exports = Potentiometer
+function Potentiometer(device) {
+	let _device = device
 
 	let _position = 0
 
@@ -71,4 +72,4 @@ export default ((device) => {
 
 	}
 
-})()
+}

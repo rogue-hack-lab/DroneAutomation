@@ -1,27 +1,30 @@
-/** A grouping of controls that sends output instructions through CylonJS to Raspberry Pi GPIO */
-export default (() => {
-	'use strict'
+'use strict'
 
-	const Cylon = require('cylon')
-	const Control = require('Control.js')
+const Cylon = require('cylon')
+const Potentiometer = require('./Potentiometer.js')
+
+/**
+ * A grouping of controls that sends output instructions through CylonJS to Raspberry Pi GPIO
+ */
+module.exports = DroneController
+
+function DroneController(name) {
+
 
 	Cylon.robot({
-		name: 'drone',
+		name: name,
 
 		connections: {
 			raspi: { adaptor: 'raspi' },
-			keyboard: { adaptor: 'keyboard' }
 		},
 
 		devices: {
 			led:        { driver: 'led', pin: 37 },
 
-			throttle:   new Control({ driver: 'direct-pin', pin: 27 }),
-			rudder:     new Control({ driver: 'direct-pin', pin: 22 }),
-			aileron:    new Control({ driver: 'direct-pin', pin: 4 }),
-			elevator:   new Control({ driver: 'direct-pin', pin: 17 }),
-
-			keyboard:   { driver: 'keyboard', connection: 'keyboard' }
+			throttle:   { driver: 'direct-pin', pin: 27 },
+			rudder:     { driver: 'direct-pin', pin: 22 },
+			aileron:    { driver: 'direct-pin', pin: 4  },
+			elevator:   { driver: 'direct-pin', pin: 17 },
 		},
 
 		work: (my) => {
@@ -60,4 +63,4 @@ export default (() => {
 		})
 
 	Cylon.start()
-})()
+}
