@@ -9,7 +9,7 @@ const Potentiometer = require('./Potentiometer.js')
 module.exports = DroneController
 
 function DroneController(name) {
-
+	this.id = 0
 
 	Cylon.robot({
 		name: name,
@@ -19,48 +19,37 @@ function DroneController(name) {
 		},
 
 		devices: {
-			led:        { driver: 'led', pin: 37 },
+			led:      { driver: 'led', pin: 37 },
 
-			throttle:   { driver: 'direct-pin', pin: 27 },
-			rudder:     { driver: 'direct-pin', pin: 22 },
-			aileron:    { driver: 'direct-pin', pin: 4  },
-			elevator:   { driver: 'direct-pin', pin: 17 },
+			throttle:	{ driver: 'servo', pin: 27 },
+			rudder:   { driver: 'servo', pin: 22 },
+			aileron:  { driver: 'servo', pin: 4 },
+			elevator: { driver: 'servo', pin: 17 },
 		},
 
-		work: (my) => {
-			my.sticks.t = 0
-			my.zeroSticks(my)
-			console.log('hello world')
-		},
+		work: () => {},
 
 		commands: {
-
-		},
-
-		sticks: { t:0, r:0, a:0, e:0 },
-
-		zeroSticks: (my) => {
-			my.sticks.r = 0.5
-			my.sticks.a = 0.5
-			my.sticks.e = 0.5
-			my.setSticks(my)
-		},
-
-		setSticks: (my) => {
-			// piblaster.setPwm( my.throttle.pin, my.sticks.t );
-			// piblaster.setPwm( my.rudder.pin, my.sticks.r );
-			// piblaster.setPwm( my.aileron.pin, my.sticks.a );
-			// piblaster.setPwm( my.elevator.pin, my.sticks.e );
-			// my.report(my);
+			test: (pack) => {console.log('received:',pack) }
 		},
 
 	})
 
-	Cylon.api('socketio',
-		{
-			host: '0.0.0.0',
-			port: '3000'
-		})
-
-	Cylon.start()
+	this.controls = {
+		throttle: new Potentiometer( Cylon.throttle,{ origin: 0, returnToOrigin: false }),
+		rudder: new Potentiometer( Cylon.rudder,{origin: 0.5, returnToOrigin: true }),
+		aileron: new Potentiometer( Cylon.aileron,{origin: 0.5, returnToOrigin: true }),
+		elevator: new Potentiometer( Cylon.elevator,{origin: 0.5, returnToOrigin: true })
+	}
 }
+
+DroneController.prototype.connect = (ip,port) => {
+	(port) ? null : port = '3000'
+	(ip) ? null : ip = '0.0.0.0'
+	Cylon.api('socketio',	{
+		host: ip,
+		port: port
+	})
+}
+
+DroneController.prototype.start = () => {	Cylon.start() }

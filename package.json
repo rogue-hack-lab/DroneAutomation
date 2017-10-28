@@ -17,6 +17,7 @@
     "cylon-keyboard": "^0.17.0",
     "cylon-raspi": "^0.20.1",
     "jest": "^21.2.1",
+    "lodash": "^4.17.4",
     "pi-blaster.js": "^0.1.1"
   },
   "devDependencies": {

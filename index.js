@@ -5,6 +5,7 @@ const control = new DroneController()
 const kb = new KeyboardInput('keyboard')
 
 kb.connect()
-
 kb.start()
 
+control.connect()
+control.start()
