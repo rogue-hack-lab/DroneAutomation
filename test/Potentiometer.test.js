@@ -1,23 +1,17 @@
 /* eslint-env jest */
-jest.mock('cylon')
+process.env.NODE_ENV = 'test'
+
 const Cylon = require('cylon')
+Cylon.config({ testMode: true });
+require('./testbot.js')
+let robot = Cylon.MCP.robots["TestBot"]
 
 const Potentiometer = require('../src/Potentiometer.js')
 let pot = {}
 
 beforeEach(() => {
-
-	Cylon.robot({
-		connections: {
-			loopback: { adaptor: 'loopback' },
-		},
-		devices: {
-			led: { driver: 'led', pin: 1 }
-		},
-		work: () => {}
-	})
-
-	pot = new Potentiometer(Cylon.led)
+	// robot = Cylon.MCP.robots["TestBot"]
+	pot = new Potentiometer(robot.led)
 })
 
 test('create a potentiometer instance',()=>{
@@ -32,7 +26,7 @@ test('position to start at default and move as instructed',()=>{
 })
 
 test('cylon.led.pin is accessible',()=>{
-	console.log(Cylon)
-	expect(pot.device).toBe(1)
+	console.log(robot)
+	expect(pot.device.pin).toBe(1)
 })
 
