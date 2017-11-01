@@ -3,7 +3,8 @@
         "browser": true,
         "es6": true,
         "node": true,
-        "mocha": true
+        "mocha": true,
+        "jest/globals": true
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -28,5 +29,8 @@
         "no-extra-semi": "warn",
         "new-cap": "warn",
         "indent": [ "warn", "tab" ]
-    }
+    },
+    "plugins": [
+        "jest"
+    ]
 }
