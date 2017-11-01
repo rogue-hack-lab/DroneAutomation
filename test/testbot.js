@@ -1,21 +1,25 @@
-const Cylon = require("cylon")
+var Cylon = require('cylon')
 
+Cylon.api('http',{
+	host: '0.0.0.0',
+	port: '3000'
+})
 Cylon.robot({
 	name: 'TestBot',
 
 	connections: {
-		arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+		loopback: { adaptor: 'loopback' }
 	},
 
 	devices: {
-		led: { driver: 'led', pin: 13 }
+		ping: { driver: 'ping' }
 	},
 
-	work: function(my) {
-		my.led.toggle()
+	work: function() {},
 
-		every((1).second(), function() {
-			my.led.toggle()
-		})
+	commands: {
+		test1: (args) => {return 'args ' + typeof(args)}
 	}
+
+
 }).start()

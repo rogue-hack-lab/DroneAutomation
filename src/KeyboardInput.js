@@ -24,20 +24,20 @@ function Keyboard (name) {
 		work: (my) => {
 			my.keyboard.on('keypress', (key) => {
 				switch (key.name) {
-					case 'escape':
-						console.log('halting keyboard')
-						Cylon.halt()//TODO when the escape key is pressed, program should exit
-						break
-					default:
-						console.log(key.name, 'pressed')
-						break
+				case 'escape':
+					console.log('halting keyboard')
+					Cylon.halt()//TODO when the escape key is pressed, program should exit
+					break
+				default:
+					console.log(key.name, 'pressed')
+					break
 				}
 			})
 			my.keyboard.on('keyup', (key) => {
 				switch (key.name) {
-					default:
-						console.log(key.name, 'released')
-						break
+				default:
+					console.log(key.name, 'released')
+					break
 				}
 			})
 		},
@@ -54,13 +54,13 @@ function Keyboard (name) {
 }
 
 Keyboard.prototype.connect = (ip,port) => {
-		(port) ? null : port = '3300';
-		(ip) ? null : ip = '0.0.0.0';
-		Cylon.api('socketio',
-			{
-				host: ip,
-				port: port
-			})
-	}
+	(port) ? null : port = '3300';
+	(ip) ? null : ip = '0.0.0.0'
+	Cylon.api('http',
+		{
+			host: ip,
+			port: port
+		})
+}
 
 Keyboard.prototype.start= () => {Cylon.start()}

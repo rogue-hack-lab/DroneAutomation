@@ -46,7 +46,7 @@ function DroneController(name) {
 DroneController.prototype.connect = (ip,port) => {
 	(port) ? null : port = '3000'
 	(ip) ? null : ip = '0.0.0.0'
-	Cylon.api('socketio',	{
+	Cylon.api('http',	{
 		host: ip,
 		port: port
 	})
